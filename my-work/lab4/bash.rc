@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+curl https://d2zp5xs5cp8zlg.cloudfront.net/image-81942-800.jpg > file1 
+
+aws s3 cp file1 s3://ds2022-dqb5ee/file1
+
+aws s3 presign --expires-in 604800 s3://ds2022-dqb5ee/file1 
+
+presigned_url=$(aws s3 presign --expires-in 604800 s3://ds2022-dqb5ee/file1) 
+
+echo "Presigned URL: $presigned_url" 
+echo $presigned_url >> submission.txt
